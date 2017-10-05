@@ -61,6 +61,23 @@ const taskManager = (function() {
       }
     });
   }
+
+  /**
+   * It returns an array of all tasks.
+   */
+  function getTasks() {
+    // Get whole storage area in chrome storage.
+    storage.get(null, function(storageArea) {
+      // return tasks items array if exists.
+      if (storageArea[schemaName]) {
+        return storageArea[schemaName];
+        // log(storageArea[schemaName]);
+      } else {
+        log('No tasks were found in storage!');
+      }
+    });
+  }
+
   /**
    * Generate a unique ID for every task.
    * @return {string} 8 numbers long.
