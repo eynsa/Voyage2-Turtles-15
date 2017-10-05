@@ -1,48 +1,76 @@
 /* eslint no-console: 1 */
 
-const options = {
+const Options = {
+
+  data: {
+    whitelist: [],
+  },
 
   init: function() {
     this.cache();
-    chrome.storage.local.get(null, this.populateForm.bind(this));
     this.bindEvents();
-    this.render();
+    this.getDataFromStorage();
+    this.render(); // pointless for now. refactor getDataFromStorage()
   },
 
+  bindEvents: function() {
+    this.options.addEventListener('submit', this.submit.bind(this));
+    this.urlEntry.addEventListener('keydown', this.urlEntryHandler.bind(this));
+  },
+
+  /** Caches DOM elements so they only have to be located once */
   cache: function() {
-    this.form = document.forms['options'];
+    this.options = document.forms['options'];
     this.urlEntry = document.getElementById('urlEntry');
     this.whitelist = document.getElementById('whitelist');
   },
 
-  bindEvents: function() {
-    this.form.addEventListener('submit', this.submit.bind(this));
-    this.urlEntry.addEventListener('keydown', this.validateEntry.bind(this));
-  },
+  /**
+   * Retrieves form data from storage, then renders the page
+   *
+   * TODO: use promises to delete this.render() and only use init();
+   */
+  getDataFromStorage: function() {
+    chrome.storage.local.get('whitelist', (data) => {
+      console.info('retrieved from storage: ' + JSON.stringify(data));
+      this.data.whitelist = data.whitelist;
 
-  populateForm: function(data) {
-    console.log('retrieved from storage: ' + JSON.stringify(data));
-    this.whitelist.textContent = data['whitelist'];
-  },
-
-  render: function() {
-  },
-
-  submit: function(event) {
-    event.preventDefault();
-
-    let entries = {};
-    let data = new FormData(this.form);
-    for (let entry of data.entries()) {
-      entries[entry[0]] = entry[1];
-    }
-
-    chrome.storage.local.set(entries, function() {
-      console.log('saved to storage: ' + JSON.stringify(entries));
+      this.render();
     });
   },
 
-  validateEntry: function(event) {
+  /** (re)Fills the forms on the page. */
+  render: function() {
+    this.whitelist.textContent = this.data.whitelist;
+  },
+
+  /**
+   * Handler for the form's 'submit' event
+   * Saves the whitelist to local storage
+   *
+   * TODO: URL validation before submitting
+   * @param {Event} event
+   */
+  submit: (event) => {
+    event.preventDefault();
+
+    let form = new FormData(document.forms['options']);
+    let data = {'whitelist': form.get('whitelist')};
+
+    chrome.storage.local.set(data, () => {
+      console.info('saved to storage: ' + JSON.stringify(data));
+    });
+  },
+
+  /**
+   * Validates the urlEntry input before adding it to the whitelist
+   *
+   * TODO: refactor URL validation to a separate function
+   * TODO: store URLs in a set instead of grabbing the textContent
+   * @param {KeyboardEvent} event
+   */
+  urlEntryHandler: (event) => {
+    this.urlEntry.classList.remove('is-valid', 'is-invalid');
     if (event.key === 'Enter') {
       event.preventDefault();
 
@@ -52,6 +80,7 @@ const options = {
         this.urlEntry.classList.add('is-valid');
         this.whitelist.textContent = this.whitelist.textContent + '\n' +
           this.urlEntry.value;
+        this.urlEntry.value = '';
       } else {
         this.urlEntry.classList.add('is-invalid');
       }
@@ -59,6 +88,6 @@ const options = {
   },
 };
 
-document.addEventListener('DOMContentLoaded', function() {
-  options.init();
+document.addEventListener('DOMContentLoaded', () => {
+  Options.init();
 });

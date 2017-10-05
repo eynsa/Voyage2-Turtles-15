@@ -61,13 +61,10 @@
 
             <div class="form-group">
               <label for="urlEntry">URL to whitelist:</label>
-              <input type="text" class="form-control" id="urlEntry" name="domain">
+              <input type="text" class="form-control" id="urlEntry" name="domain" autocomplete="off">
               <small class="form-text text-muted">Use an asterisk (*) as a wildcard</small>
             </div>
 
-          </div>
-          <div class="col">
-            Wildcards
           </div>
         </div>
 
@@ -75,15 +72,12 @@
           <div class="col">
 
             <div class="form-group">
-              <textarea class="form-control" id="whitelist" rows="3" name="whitelist"></textarea>
+              <textarea class="form-control" id="whitelist" rows="10" name="whitelist"></textarea>
             </div>
 
           </div>
-          <div class="col">
-            Validate here?
-          </div>
         </div>
-        <div class="my-3">
+        <div class="mt-3">
           <button class="btn btn-primary" type="submit" name="submit">Save</btn>
         </div>
 
