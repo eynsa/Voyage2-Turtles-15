@@ -62,18 +62,33 @@ const taskManager = (function() {
     });
   }
 
-  /**
-   * It returns an array of all tasks.
-   */
-  function getTasks() {
+  function getTasks(isLogged = false, tasksData) {
+    let tasksStorageData;
     // Get whole storage area in chrome storage.
     storage.get(null, function(storageArea) {
       // return tasks items array if exists.
       if (storageArea[schemaName]) {
-        return storageArea[schemaName];
-        // log(storageArea[schemaName]);
+        tasksStorageData = storageArea[schemaName];
+        if (isLogged) {
+          log(tasksStorageData);
+        }
+        if (tasksData) {
+          return tasksData(tasksStorageData);
+        }
       } else {
         log('No tasks were found in storage!');
+      }
+    });
+  }
+
+  /**
+   * It clears the tasks storage area in chrome storage.
+   */
+  function clearTasksStorage() {
+    storage.remove(schemaName, function() {
+      const error = chrome.runtime.lastError;
+      if (error) {
+        log(error);
       }
     });
   }
@@ -110,6 +125,7 @@ const taskManager = (function() {
   return {
     addTask: addTask,
     getTasks: getTasks,
+    clearTasksStorage: clearTasksStorage,
   };
 })();
 
