@@ -1,87 +1,64 @@
-/**
- * temp logging function for the option page
- * @param {String} message
- */
-function log(message) {
-  let pre = document.getElementById('logging');
-  let time = (new Date).toTimeString().slice(0, 8);
-  pre.textContent = `${time} - ${message}\n${pre.textContent}\n`;
-}
+/* eslint no-console: 1 */
 
-/**
- * Populates form fields with data from storage
- * @param {Object} data - JSON data object
- */
-function fillForm(data) {
-  log('retrieved from storage: ' + JSON.stringify(data));
-  let whitelist = document.querySelector('textarea[name="whitelist"]');
-  whitelist.textContent = data['whitelist'];
-}
+const options = {
 
-/**
- * Checks whether the domain is valid
- * todo: implement
- * @param {String} domain
- * @return {boolean} is the input a valid domain
- */
-function isValidDomain(domain) {
-  // eslint-disable-next-line
-  let pattern = new RegExp('^(http(s)?:\/\/)?(www.)?([-a-z0-9\*]{1,63}\.)*?[a-z0-9][-a-z0-9]{0,61}[a-z0-9]\.[a-z]{2,6}(\/[*-\w@\+\.~#\?&/=%]*)?');
-  return pattern.test(domain);
-}
+  init: function() {
+    this.cache();
+    chrome.storage.local.get(null, this.populateForm.bind(this));
+    this.bindEvents();
+    this.render();
+  },
 
-/**
- * Gets form entries and stores it
- * @param {Event} event - submit event
- */
-function submit(event) {
-  event.preventDefault();
+  cache: function() {
+    this.form = document.forms['options'];
+    this.urlEntry = document.getElementById('urlEntry');
+    this.whitelist = document.getElementById('whitelist');
+  },
 
-  let entries = {};
-  let formData = new FormData(document.forms['options']);
-  for (let entry of formData.entries()) {
-    entries[entry[0]] = entry[1];
-  }
+  bindEvents: function() {
+    this.form.addEventListener('submit', this.submit.bind(this));
+    this.urlEntry.addEventListener('keydown', this.validateEntry.bind(this));
+  },
 
-  chrome.storage.local.set(entries, function() {
-    log('saved to storage: ' + JSON.stringify(entries));
-  });
-}
+  populateForm: function(data) {
+    console.log('retrieved from storage: ' + JSON.stringify(data));
+    this.whitelist.textContent = data['whitelist'];
+  },
 
-/**
- * Stops the form from submitting when pressing the 'Enter' key.
- * Validates the domain field and if valid, add it to the whitelist textarea.
- * @param {Event} event - KeyboardEvent
- */
-function validateDomainOnEnter(event) {
-  if (event.key === 'Enter') {
+  render: function() {
+  },
+
+  submit: function(event) {
     event.preventDefault();
 
-    let input = document.querySelector('input[name="domain"]');
-    if (isValidDomain(input.value)) {
-      input.classList.add('is-valid');
-      let whitelist = document.querySelector('textarea[name="whitelist"]');
-      whitelist.textContent = `${whitelist.textContent}\n${input.value}`;
-    } else {
-      input.classList.add('is-invalid');
-      // let small = document.querySelector('small.whitelist');
-      // small.add
+    let entries = {};
+    let data = new FormData(this.form);
+    for (let entry of data.entries()) {
+      entries[entry[0]] = entry[1];
     }
-  }
-}
 
+    chrome.storage.local.set(entries, function() {
+      console.log('saved to storage: ' + JSON.stringify(entries));
+    });
+  },
 
-/** document init function */
-function init() {
-  // retrieves form values from storage and puts them in the page
-  chrome.storage.local.get(null, fillForm);
+  validateEntry: function(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
 
-  // overrides default behavior when the focus is on domain input field
-  let domainField = document.querySelector('input[name="domain');
-  domainField.addEventListener('keydown', validateDomainOnEnter);
+      // eslint-disable-next-line
+      let pattern = new RegExp('^(http(s)?:\/\/)?(www.)?([-a-z0-9\*]{1,63}\.)*?[a-z0-9][-a-z0-9]{0,61}[a-z0-9]\.[a-z]{2,6}(\/[*-\w@\+\.~#\?&/=%]*)?');
+      if (pattern.test(this.urlEntry.value)) { // URL is valid
+        this.urlEntry.classList.add('is-valid');
+        this.whitelist.textContent = this.whitelist.textContent + '\n' +
+          this.urlEntry.value;
+      } else {
+        this.urlEntry.classList.add('is-invalid');
+      }
+    }
+  },
+};
 
-  // what to do when the form is submitted
-  document.forms['options'].addEventListener('submit', submit);
-}
-
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', function() {
+  options.init();
+});

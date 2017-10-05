@@ -34,7 +34,7 @@
     <nav class="col-2 sidebar">
       <ul class="nav nav-pills flex-column">
         <li class="nav-item">
-          <a class="nav-link active" href="#whitelist">Whitelist</a>
+          <a class="nav-link active" href="#whitelistTitle">Whitelist</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Timer</a>
@@ -50,7 +50,7 @@
 
     <main class="col-10" role="main">
 
-      <h2><a id="whitelist">Whitelist</a></h2>
+      <h2><a id="whitelistTitle">Whitelist</a></h2>
       <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>
         Mauris pulvinar feugiat ipsum pretium feugiat. Aliquam et mi blandit, congue sem varius, condimentum leo.<br>
         In volutpat velit ut lacus semper elementum sed id risus.</p>
@@ -60,9 +60,9 @@
           <div class="col">
 
             <div class="form-group">
-              <label for="whitelist">URL to whitelist:</label>
-              <input type="text" class="form-control" id="whitelist" placeholder="http://" name="domain">
-              <small id="whitelist" class="form-text text-muted">Use an asterisk (*) as a wildcard</small>
+              <label for="urlEntry">URL to whitelist:</label>
+              <input type="text" class="form-control" id="urlEntry" name="domain">
+              <small class="form-text text-muted">Use an asterisk (*) as a wildcard</small>
             </div>
 
           </div>
@@ -75,7 +75,7 @@
           <div class="col">
 
             <div class="form-group">
-              <textarea class="form-control" id="whitelistedDomains" rows="3" name="whitelist"></textarea>
+              <textarea class="form-control" id="whitelist" rows="3" name="whitelist"></textarea>
             </div>
 
           </div>
@@ -88,9 +88,6 @@
         </div>
 
       </form>
-
-      <hr>
-      <pre id="logging"></pre>
 
     </main>
 
