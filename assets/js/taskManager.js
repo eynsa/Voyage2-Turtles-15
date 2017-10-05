@@ -112,9 +112,10 @@ const taskManager = (function() {
    * @return {string} taskText
    */
   function taskTextValidator(taskText) {
-    if (typeof taskText === 'string' && taskText !== undefined &&
-      taskText !== '') {
-      return taskText;
+    if (taskText) {
+      if (typeof taskText === 'string' && taskText !== '') {
+        return taskText;
+      }
     }
     console.error('taskText: must be string!');
   }
