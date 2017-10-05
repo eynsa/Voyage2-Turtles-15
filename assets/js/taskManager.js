@@ -62,6 +62,11 @@ const taskManager = (function() {
     });
   }
 
+  /**
+   * It gets tasks storage array from chrome storage.
+   * @param {boolean} isLogged activate console.log
+   * @param {function} tasksData callback function
+   */
   function getTasks(isLogged = false, tasksData) {
     let tasksStorageData;
     // Get whole storage area in chrome storage.
