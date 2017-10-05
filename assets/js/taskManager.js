@@ -18,14 +18,14 @@ const taskManager = (function() {
   function addTask(taskText) {
     // Check if taskText is undefined.
     if (!taskText) {
-      log('taskText argument maust be a valid string');
+      log('taskText argument must be a valid string');
     }
     // Create JSON schema to use in storage.
     Schema = {
       [schemaName]: [
         {
-          'taskID': taskIDGenerator(),
-          'taskItem': taskTextValidator(taskText),
+          'id': taskIDGenerator(),
+          'item': taskTextValidator(taskText),
         },
       ],
     };
