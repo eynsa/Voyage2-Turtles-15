@@ -12,7 +12,9 @@
     "eslint-config-google": "^0.9.1",
     "mocha": "^3.5.3"
   },
-  "dependencies": {},
+  "dependencies": {
+    "bulma": "^0.5.3"
+  },
   "scripts": {
     "test": "mocha"
   }
