@@ -44,30 +44,45 @@ const taskManager = (function() {
         storage.get(schemaName, function(tasksData) {
           // Create new task item Object.
           newItemTask = {
-            'taskID': taskIDGenerator(),
-            'taskItem': taskTextValidator(taskText),
+            'id': taskIDGenerator(),
+            'item': taskTextValidator(taskText),
           };
           // tasksArray: Tasks items array from chrome storage.
           const tasksArray = tasksData[schemaName];
           // Push new task item to tasksArray.
           tasksArray.push(newItemTask);
-          // Save new tasksArray to tasks storage area in chrome storage.
-          storage.set({
-            [schemaName]: tasksArray,
-          }, function() {
-            log('item has been added!');
-          });
+          setTasksStorageArea(tasksArray, 'Task item has been added!');
         });
       }
     });
   }
 
   /**
+   * Delete a task item with The generated task ID
+   * @param {number} taskID
+   */
+  function deleteTask(taskID) {
+    if (taskIDValidator(taskID)) {
+      getTasks(false, function(allTaskData) {
+        getTasks(false, null, taskID, function(taskData) {
+          const filterTasks = (item) => item.id !== taskData.id;
+          const newTasksData = allTaskData.filter(filterTasks);
+          storage.get(schemaName, function() {
+            setTasksStorageArea(newTasksData, 'Task item has been deleted!');
+          });
+        });
+      });
+    }
+  }
+
+  /**
    * It gets tasks storage array from chrome storage.
    * @param {boolean} isLogged activate console.log
    * @param {function} tasksData callback function
+   * @param {number} taskID number
+   * @param {function} taskData callback function
    */
-  function getTasks(isLogged = false, tasksData) {
+  function getTasks(isLogged, tasksData, taskID, taskData) {
     let tasksStorageData;
     // Get whole storage area in chrome storage.
     storage.get(null, function(storageArea) {
@@ -75,10 +90,24 @@ const taskManager = (function() {
       if (storageArea[schemaName]) {
         tasksStorageData = storageArea[schemaName];
         if (isLogged) {
+          log(`Logging Data to Console enabled: \n`);
           log(tasksStorageData);
         }
-        if (tasksData) {
-          return tasksData(tasksStorageData);
+        if (tasksData !== null) {
+          if (typeof tasksData === 'function') {
+            return tasksData(tasksStorageData);
+          }
+        }
+        if (taskID !== null) {
+          if (taskIDValidator(taskID)) {
+            for (const taskItem in tasksStorageData) {
+              if (tasksStorageData.hasOwnProperty(taskItem)) {
+                if (parseInt(tasksStorageData[taskItem].id) === taskID) {
+                  return taskData(tasksStorageData[taskItem]);
+                }
+              }
+            }
+          }
         }
       } else {
         log('No tasks were found in storage!');
@@ -121,6 +150,30 @@ const taskManager = (function() {
   }
 
   /**
+   * Task ID number validator
+   * @param { number } taskID
+   * @return {number} taskID
+   */
+  function taskIDValidator(taskID) {
+    if (taskID && typeof taskID === 'number') {
+      return taskID;
+    }
+  }
+
+  /**
+   * Save new tasksArray to tasks storage area in chrome storage.
+   * @param {array} tasksArray
+   * @param {string} loggedMessage
+   */
+  function setTasksStorageArea(tasksArray, loggedMessage) {
+    storage.set({
+      [schemaName]: tasksArray,
+    }, function() {
+      log(loggedMessage);
+    });
+  }
+
+  /**
    * console logger.
    * @param {*} logged
    */
@@ -130,6 +183,7 @@ const taskManager = (function() {
 
   return {
     addTask: addTask,
+    deleteTask: deleteTask,
     getTasks: getTasks,
     clearTasksStorage: clearTasksStorage,
   };
