@@ -7,43 +7,100 @@
 <link rel="stylesheet" href="assets/css/font-awesome.min.css">
 <script src="assets/js/popup.js"></script>
 
-<nav style="width: 350px"> <!-- temp -->
-  <ul class="nav nav-pills nav-fill">
-    <li class="nav-item">
-      <a class="nav-link active" href="#">Timer</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Tasks</a>
-    </li>
-  </ul>
+<!-- header -->
+<nav>
+  <div class="tabs is-fullwidth is-large">
+    <ul>
+      <li class="is-active">
+        <a>
+          <span class="icon"><i class="fa fa-clock-o"></i></span>
+          <span>Timer</span>
+        </a>
+      </li>
+      <li>
+        <a>
+          <span class="icon"><i class="fa fa-tasks"></i></span>
+          <span>Tasks</span>
+        </a>
+      </li>
+    </ul>
+  </div>
 </nav>
+<!-- /header -->
 
-<main class="container-fluid text-center p-3" role="main">
+<section>
+  <div class="section">
+    <div class="content has-text-centered">
+      <h4 class="is-4">What will you work on?</h4>
+      <form name="timer">
 
-  <form name="timer">
-    <div class="form-group">
-      <legend>What will you work on next?</legend>
-      <label for="selectTask">Select a task:</label>
-      <input type="text" class="form-control" id="selectTask" name="task">
-      <small id="selectTask" class="form-text text-muted">Choose a short task!</small>
+        <!-- text input -->
+        <div class="field">
+          <div class="control has-icons-left">
+            <span class="icon is-small is-left"><i class="fa fa-pencil"></i></span>
+            <input class="input" type="text" placeholder="Choose a task">
+          </div>
+        </div>
+        <!-- /text input -->
+
+
+        <div>
+          <div class="section">
+            <!-- timer -->
+            <div class="content has-text-centered">
+              <h1 class="is-1">25:00</h1>
+            </div>
+            <!-- /timer -->
+            <!-- progress bar -->
+            <div>
+              <progress class="progress is-warning is-small" value="30" max="100">30%</progress>
+            </div>
+            <!-- /progress bar -->
+            <div class="section">
+              <!-- timer -->
+              <button class="button is-primary" id="startTimer" aria-label="Start Timer">
+                <span class="icon is-small"><i class="fa fa-play"></i></span>
+                <span>Start</span>
+              </button>
+              <!-- /start button -->
+            </div>
+          </div>
+        </div>
+
+        <!-- start button -->
+        <!-- TODO: make this button work -->
+        <!--
+        <div class="content has-text-centered">
+          <div class="field is-grouped is-grouped-multiline is-large">
+            <div class="control">
+              <div class="tags has-addons is-large">
+                <span class="tag is-large">
+                  <span class="icon is-small">
+                    <i class="fa fa-play"></i>
+                  </span>
+                </span>
+                <span class="tag is-info is-large">Start</span>
+              </div>
+            </div>
+          </div>
+          -->
+
+        </div>
+
+      </form>
     </div>
+  </div>
+</section>
 
-    <div class="form-group pb-3">
-      <legend>How long will you work on it?</legend>
-      <button type="button" class="btn btn-secondary">25 minutes</button>
-      <button type="button" class="btn btn-secondary">50 minutes</button>
+<footer class="footer is-paddingless">
+  <div class="container is-fluid">
+    <div class="has-text-right">
+      <a class="icon" href="#"><i class="fa fa-cog" id="options">&nbsp;</i></a>
+      <!-- <button class="button is-outlined is-small" id="options" aria-label="Options">
+        <span class="icon"><i class="fa fa-cog" id="options">&nbsp;</i></span>
+        <span>Options</span>
+      </button> -->
+
     </div>
-
-    <div class="form-group">
-      <button class="btn btn-lg btn-primary" id="timer">Start</button>
-    </div>
-
-  </form>
-
-</main>
-
-<footer class="footer">
-  <div class="container-fluid text-right p-2">
-    <button class="btn btn-sm" id="options">&#x2699;</button>
   </div>
 </footer>

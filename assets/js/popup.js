@@ -21,8 +21,8 @@ function options() {
 
 /** document init function */
 function init() {
-  document.querySelector('#timer').addEventListener('click', timer);
-  document.querySelector('#options').addEventListener('click', options);
+  document.getElementById('startTimer').addEventListener('click', timer);
+  document.getElementById('options').addEventListener('click', options);
 }
 
 document.addEventListener('DOMContentLoaded', init);
