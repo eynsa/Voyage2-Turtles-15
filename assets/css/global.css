@@ -1,9 +1,8 @@
-body.sticky-footer {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
-
-section.sticky {
-  flex: 1;
+/* using Bulma's naming scheme. could break in the future */
+footer.is-sticky {
+  position: fixed;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
 }
