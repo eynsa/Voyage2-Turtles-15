@@ -1,0 +1,9 @@
+body.sticky-footer {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+section.sticky {
+  flex: 1;
+}
