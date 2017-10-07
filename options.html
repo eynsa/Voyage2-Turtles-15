@@ -8,113 +8,72 @@
 <script src="assets/js/options.js"></script>
 <title>Options</title>
 
-<div class="columns is-mobile is-marginless is-paddingless">
-  <!-- aside -->
-  <div class="column is-narrow hero is-fullheight" style="width: 200px">
-    <!-- class="is-narrow" style="width:150px"> -->
+<!-- content -->
+<main>
+  <section class="section">
+    <div class="container">
 
-    <aside class="menu">
-      <p class="menu-label">General
-      <ul class="menu-list">
-        <li><a>Dashboard</a>
-        <li><a>Stats</a>
-      </ul>
-      <p class="menu-label">Settings
-      <ul class="menu-list">
-        <li><a>Timer</a>
-        <li><a class="is-active">Whitelist</a>
-          <ul>
-            <li><a>I'm Not Sure</a>
-            <li><a>If We</a>
-            <li><a>Need These</a>
-          </ul>
-      </ul>
+      <h1 class="title">Whitelist</h1>
+      <h3 class="subtitle">The sites you still need access to even if the timer is ticking.</h3>
 
-      <p class="menu-label">Other
-      <ul class="menu-list">
-        <li><a>Tutorial</a>
-        <li><a>Who We Are</a>
-        <li><a>Contact Us</a>
-      </ul>
-    </aside>
-
-  </div>
-  <!-- /aside -->
-
-  <!-- main -->
-  <div class="column is-marginless">
-    <!-- content -->
-    <main>
-      <section class="section">
-        <div class="container">
-
-          <h1 class="title">Whitelist</h1>
-          <h3 class="subtitle">The sites you still need access to even if the timer is ticking.</h3>
-
-          <form name="options">
-            <label class="label" for="urlEntry">URL to whitelist:</label>
-            <div class="field-body">
-              <div class="control has-icons-left"> <!-- is-expanded -->
-                <input class="input" type="text" id="urlEntry" name="domain" placeholder="Enter URL" autocomplete="off">
-                <span class="icon is-left">
-                  <i class="fa fa-link"></i>
-                </span>
-                <p class="help">Use an asterisk (*) as a wildcard
-              </div>
-              <div class="control">
-                <button class="button is-primary">
-                  Add to Whitelist
-                </button>
-              </div>
-            </div>
-
-            <div class="field">
-              <div class="field-label">&nbsp;</div>
-              <label class="label" for="whitelist">List of Whitelisted URLs</label>
-              <div class="field-body">
-                <textarea class="textarea" id="whitelist" rows="10" name="whitelist"></textarea>
-              </div>
-            </div>
-
-            <div class="field is-grouped">
-              <p class="control">
-              <button class="button is-success" type="submit" name="submit">
-                <span class="icon is-small">
-                  <i class="fa fa-check"></i>
-                </span>
-                <span>Save Changes</span>
-              </button>
-              <p class="control">
-              <button class="button is-outlined is-danger" type="submit" name="submit">
-                <span class="icon is-small">
-                  <i class="fa fa-close"></i>
-                </span>
-                <span>Cancel</span>
-              </button>
-            </div>
-          </form>
-
+      <form name="options">
+        <label class="label" for="urlEntry">URL to whitelist:</label>
+        <div class="field-body">
+          <div class="control has-icons-left"> <!-- is-expanded -->
+            <input class="input" type="text" id="urlEntry" name="domain" placeholder="Enter URL" autocomplete="off">
+            <span class="icon is-left">
+              <i class="fa fa-link"></i>
+            </span>
+            <p class="help">Use an asterisk (*) as a wildcard
+          </div>
+          <div class="control">
+            <button class="button is-primary">
+              Add to Whitelist
+            </button>
+          </div>
         </div>
-      </section>
 
-    </main>
-    <!-- /content>
-
-    <!-- footer -->
-    <footer class="footer sticky-footer">
-      <div class="container">
-        <div class="content has-text-centered">
-          <p><strong>Pomidoras</strong> - 0.0.1
-          <p>
-            <a class="icon" href="https://github.com/chingu-coders/Voyage2-Turtles-15">
-              <i class="fa fa-github"></i>
-            </a>
+        <div class="field">
+          <div class="field-label">&nbsp;</div>
+          <label class="label" for="whitelist">List of Whitelisted URLs</label>
+          <div class="field-body">
+            <textarea class="textarea" id="whitelist" rows="10" name="whitelist"></textarea>
+          </div>
         </div>
-      </div>
-    </footer>
-    <!-- /footer -->
 
+        <div class="field is-grouped">
+          <p class="control">
+          <button class="button is-success" type="submit" name="submit">
+            <span class="icon is-small">
+              <i class="fa fa-check"></i>
+            </span>
+            <span>Save Changes</span>
+          </button>
+          <p class="control">
+          <button class="button is-outlined is-danger" type="submit" name="submit">
+            <span class="icon is-small">
+              <i class="fa fa-close"></i>
+            </span>
+            <span>Cancel</span>
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </section>
+</main>
+<!-- /content -->
+
+<!-- footer -->
+<footer class="footer sticky-footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p><strong>Pomidoras</strong> - 0.0.1
+      <p>
+        <a class="icon" href="https://github.com/chingu-coders/Voyage2-Turtles-15">
+          <i class="fa fa-github"></i>
+        </a>
+    </div>
   </div>
-  <!-- /main -->
-
-</div>
+</footer>
+<!-- /footer -->
