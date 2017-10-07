@@ -1,11 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html class="popup" lang="en">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="assets/css/global.css">
 <link rel="stylesheet" href="assets/css/bulma/bulmaswatch.min.css">
 <link rel="stylesheet" href="assets/css/font-awesome.min.css">
 <script src="assets/js/popup.js"></script>
+<body class="popup sticky-footer">
 
 <!-- header -->
 <nav>
@@ -28,6 +29,8 @@
 </nav>
 <!-- /header -->
 
+<!-- content -->
+<main class="sticky-footer">
 <section>
   <div class="section">
     <div class="content has-text-centered">
@@ -69,6 +72,7 @@
 
         <!-- start button -->
         <!-- TODO: make this button work -->
+
         <!--
         <div class="content has-text-centered">
           <div class="field is-grouped is-grouped-multiline is-large">
@@ -91,16 +95,13 @@
     </div>
   </div>
 </section>
+</main>
+<!-- /content -->
 
 <footer class="footer is-paddingless">
   <div class="container is-fluid">
-    <div class="has-text-right">
-      <a class="icon" style="color: #333;" href="#"><i class="fa fa-cog" id="options">&nbsp;</i></a>
-      <!-- <button class="button is-outlined is-small" id="options" aria-label="Options">
-        <span class="icon"><i class="fa fa-cog" id="options">&nbsp;</i></span>
-        <span>Options</span>
-      </button> -->
-
+    <div class="has-text-right" style="margin: 5px">
+      <a class="icon is-primary" href="#"><i class="fa fa-cog" id="options">&nbsp;</i></a>
     </div>
   </div>
 </footer>
