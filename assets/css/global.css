@@ -1,0 +1,25 @@
+html.popup {
+  width: 350px;
+}
+
+body.popup {
+  width: 350px;
+}
+
+body.sticky-footer {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main.sticky-footer {
+  flex: 1;
+}
+
+div.tab-content {
+  display: none;
+}
+
+div.tab-content.is-active {
+  display: block;
+}
