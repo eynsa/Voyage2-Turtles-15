@@ -1,8 +1,7 @@
-/* using Bulma's naming scheme. could break in the future */
-footer.is-sticky {
-  position: fixed;
+footer.sticky-footer {
+  position: fixed !important;
   right: 0;
   left: 0;
   bottom: 0;
-  z-index: 2;
+  z-index: 1; /* -1: aside is on top; 1: footer is on top
 }

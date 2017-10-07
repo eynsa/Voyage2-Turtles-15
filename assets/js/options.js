@@ -70,19 +70,19 @@ const Options = {
    * @param {KeyboardEvent} event
    */
   urlEntryHandler: (event) => {
-    this.urlEntry.classList.remove('is-valid', 'is-invalid');
+    this.urlEntry.classList.remove('is-success', 'is-danger');
     if (event.key === 'Enter') {
       event.preventDefault();
 
       // eslint-disable-next-line
       let pattern = new RegExp('^(http(s)?:\/\/)?(www.)?([-a-z0-9\*]{1,63}\.)*?[a-z0-9][-a-z0-9]{0,61}[a-z0-9]\.[a-z]{2,6}(\/[*-\w@\+\.~#\?&/=%]*)?');
       if (pattern.test(this.urlEntry.value)) { // URL is valid
-        this.urlEntry.classList.add('is-valid');
+        this.urlEntry.classList.add('is-success');
         this.whitelist.textContent = this.whitelist.textContent + '\n' +
           this.urlEntry.value;
         this.urlEntry.value = '';
       } else {
-        this.urlEntry.classList.add('is-invalid');
+        this.urlEntry.classList.add('is-danger');
       }
     }
   },
