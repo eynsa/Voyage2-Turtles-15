@@ -1,48 +1,129 @@
 <!doctype html>
-<html lang="en">
+<html class="popup" lang="en">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="assets/css/global.css">
-<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/bulma/bulmaswatch.min.css">
+<link rel="stylesheet" href="assets/css/font-awesome.min.css">
 <script src="assets/js/popup.js"></script>
+<body class="popup sticky-footer">
 
-<nav style="width: 350px"> <!-- temp -->
-  <ul class="nav nav-pills nav-fill">
-    <li class="nav-item">
-      <a class="nav-link active" href="#">Timer</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Tasks</a>
-    </li>
-  </ul>
+<!-- header -->
+<nav>
+  <div class="tabs is-fullwidth is-large">
+    <ul>
+      <li class="tab-button is-active" data-tab="tab-1">
+        <a>
+          <span class="icon"><i class="fa fa-clock-o"></i></span>
+          <span>Timer</span>
+        </a>
+      </li>
+      <li class="tab-button" data-tab="tab-2">
+        <a>
+          <span class="icon"><i class="fa fa-tasks"></i></span>
+          <span>Tasks</span>
+        </a>
+      </li>
+    </ul>
+  </div>
 </nav>
+<!-- /header -->
 
-<main class="container-fluid text-center p-3" role="main">
+<!-- content -->
+<main class="sticky-footer">
+<section>
 
-  <form name="timer">
-    <div class="form-group">
-      <legend>What will you work on next?</legend>
-      <label for="selectTask">Select a task:</label>
-      <input type="text" class="form-control" id="selectTask" name="task">
-      <small id="selectTask" class="form-text text-muted">Choose a short task!</small>
+  <!-- Tabs -->
+  <div id="tab-container">
+
+    <!-- Tab #1: Timer -->
+    <div class="tab-content is-active" data-tab="tab-1">
+      <div class="section">
+        <div class="content has-text-centered">
+          <h4 class="is-4">What will you work on?</h4>
+          <form name="timer">
+
+            <!-- text input -->
+            <div class="field">
+              <div class="control has-icons-left">
+                <span class="icon is-small is-left"><i class="fa fa-pencil"></i></span>
+                <input class="input" type="text" placeholder="Choose a task">
+              </div>
+            </div>
+            <!-- /text input -->
+
+            <div>
+              <div class="section">
+                <!-- timer -->
+                <div class="content has-text-centered">
+                  <h1 class="title is-1">25:00</h1>
+                </div>
+                <!-- /timer -->
+                <!-- progress bar -->
+                <div>
+                  <progress class="progress is-warning is-small" value="30" max="100">30%</progress>
+                </div>
+                <!-- /progress bar -->
+                <div class="section">
+                  <!-- timer -->
+                  <button class="button is-primary" id="startTimer" aria-label="Start Timer">
+                    <span class="icon is-small"><i class="fa fa-play"></i></span>
+                    <span>Start</span>
+                  </button>
+                  <!-- /start button -->
+                </div>
+              </div>
+            </div>
+
+            <!-- start button -->
+            <!-- TODO: make this button work -->
+
+            <!--
+            <div class="content has-text-centered">
+              <div class="field is-grouped is-grouped-multiline is-large">
+                <div class="control">
+                  <div class="tags has-addons is-large">
+                    <span class="tag is-large">
+                      <span class="icon is-small">
+                        <i class="fa fa-play"></i>
+                      </span>
+                    </span>
+                    <span class="tag is-info is-large">Start</span>
+                  </div>
+                </div>
+              </div>
+              -->
+
+            </div>
+
+          </form>
+        </div>
+      </div>
     </div>
+    <!-- /Tab #1: Timer -->
 
-    <div class="form-group pb-3">
-      <legend>How long will you work on it?</legend>
-      <button type="button" class="btn btn-secondary">25 minutes</button>
-      <button type="button" class="btn btn-secondary">50 minutes</button>
-    </div>
+    <!-- Tab #2: Tasks -->
+    <div class="tab-content" data-tab="tab-2">
+        <div class="section">
+          <div class="content has-text-centered">
+            <h4 class="is-4">Second tab: Tasks</h4>
+            <p>New tab!</p>
+          </div>
+        </div>
+      </div>
+      <!-- /Tab #2: Tasks -->
 
-    <div class="form-group">
-      <button class="btn btn-lg btn-primary" id="timer">Start</button>
-    </div>
+  </div>
+  <!-- /TABS -->
 
-  </form>
-
+</section>
 </main>
+<!-- /content -->
 
-<footer class="footer">
-  <div class="container-fluid text-right p-2">
-    <button class="btn btn-sm" id="options">&#x2699;</button>
+<footer class="footer is-paddingless">
+  <div class="container is-fluid">
+    <div class="has-text-right" style="margin: 5px">
+      <a class="icon is-primary" href="#"><i class="fa fa-cog" id="options">&nbsp;</i></a>
+    </div>
   </div>
 </footer>
