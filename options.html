@@ -7,9 +7,10 @@
 <link rel="stylesheet" href="assets/css/font-awesome.min.css">
 <script src="assets/js/options.js"></script>
 <title>Options</title>
+<body class="sticky-footer">
 
 <!-- navbar -->
-<nav class="navbar is-transparent" role="navigation" aria-label="main navigation">
+<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item" href="http://bulma.io">
       <img src="assets/images/icon@2x.png" alt="Pomidoras">
@@ -57,7 +58,7 @@
 
     <div class="navbar-end">
       <a class="navbar-item" href="https://github.com/chingu-coders/Voyage2-Turtles-15" target="_blank">
-        <span class="icon" style="color: #FFF;">
+        <span class="icon" style="color: #333;">
           <i class="fa fa-lg fa-github"></i>
         </span>
       </a>
@@ -68,7 +69,7 @@
 <!-- /navbar -->
 
 <!-- content -->
-<main>
+<main class="sticky-footer">
   <section class="section">
     <div class="container">
 
@@ -78,11 +79,11 @@
       <form name="options">
         <label class="label" for="urlEntry">URL to whitelist:</label>
         <div class="field-body">
-          <div class="control has-icons-left"> <!-- is-expanded -->
-            <input class="input" type="text" id="urlEntry" name="domain" placeholder="Enter URL" autocomplete="off">
+          <div class="control has-icons-left"> <!-- is-expanded doesn't work? -->
             <span class="icon is-left">
               <i class="fa fa-link"></i>
             </span>
+            <input class="input" type="text" id="urlEntry" name="domain" placeholder="Enter URL" autocomplete="off">
             <p class="help">Use an asterisk (*) as a wildcard
           </div>
           <div class="control">
