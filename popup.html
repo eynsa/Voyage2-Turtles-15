@@ -12,13 +12,13 @@
 <nav>
   <div class="tabs is-fullwidth is-large">
     <ul>
-      <li class="is-active">
+      <li class="tab-button is-active" data-tab="tab-1">
         <a>
           <span class="icon"><i class="fa fa-clock-o"></i></span>
           <span>Timer</span>
         </a>
       </li>
-      <li>
+      <li class="tab-button" data-tab="tab-2">
         <a>
           <span class="icon"><i class="fa fa-tasks"></i></span>
           <span>Tasks</span>
@@ -32,68 +32,90 @@
 <!-- content -->
 <main class="sticky-footer">
 <section>
-  <div class="section">
-    <div class="content has-text-centered">
-      <h4 class="is-4">What will you work on?</h4>
-      <form name="timer">
 
-        <!-- text input -->
-        <div class="field">
-          <div class="control has-icons-left">
-            <span class="icon is-small is-left"><i class="fa fa-pencil"></i></span>
-            <input class="input" type="text" placeholder="Choose a task">
-          </div>
-        </div>
-        <!-- /text input -->
+  <!-- Tabs -->
+  <div id="tab-container">
 
-
-        <div>
-          <div class="section">
-            <!-- timer -->
-            <div class="content has-text-centered">
-              <h1 class="title is-1">25:00</h1>
-            </div>
-            <!-- /timer -->
-            <!-- progress bar -->
-            <div>
-              <progress class="progress is-warning is-small" value="30" max="100">30%</progress>
-            </div>
-            <!-- /progress bar -->
-            <div class="section">
-              <!-- timer -->
-              <button class="button is-primary" id="startTimer" aria-label="Start Timer">
-                <span class="icon is-small"><i class="fa fa-play"></i></span>
-                <span>Start</span>
-              </button>
-              <!-- /start button -->
-            </div>
-          </div>
-        </div>
-
-        <!-- start button -->
-        <!-- TODO: make this button work -->
-
-        <!--
+    <!-- Tab #1: Timer -->
+    <div class="tab-content is-active" data-tab="tab-1">
+      <div class="section">
         <div class="content has-text-centered">
-          <div class="field is-grouped is-grouped-multiline is-large">
-            <div class="control">
-              <div class="tags has-addons is-large">
-                <span class="tag is-large">
-                  <span class="icon is-small">
-                    <i class="fa fa-play"></i>
-                  </span>
-                </span>
-                <span class="tag is-info is-large">Start</span>
+          <h4 class="is-4">What will you work on?</h4>
+          <form name="timer">
+
+            <!-- text input -->
+            <div class="field">
+              <div class="control has-icons-left">
+                <span class="icon is-small is-left"><i class="fa fa-pencil"></i></span>
+                <input class="input" type="text" placeholder="Choose a task">
               </div>
             </div>
-          </div>
-          -->
+            <!-- /text input -->
 
+            <div>
+              <div class="section">
+                <!-- timer -->
+                <div class="content has-text-centered">
+                  <h1 class="title is-1">25:00</h1>
+                </div>
+                <!-- /timer -->
+                <!-- progress bar -->
+                <div>
+                  <progress class="progress is-warning is-small" value="30" max="100">30%</progress>
+                </div>
+                <!-- /progress bar -->
+                <div class="section">
+                  <!-- timer -->
+                  <button class="button is-primary" id="startTimer" aria-label="Start Timer">
+                    <span class="icon is-small"><i class="fa fa-play"></i></span>
+                    <span>Start</span>
+                  </button>
+                  <!-- /start button -->
+                </div>
+              </div>
+            </div>
+
+            <!-- start button -->
+            <!-- TODO: make this button work -->
+
+            <!--
+            <div class="content has-text-centered">
+              <div class="field is-grouped is-grouped-multiline is-large">
+                <div class="control">
+                  <div class="tags has-addons is-large">
+                    <span class="tag is-large">
+                      <span class="icon is-small">
+                        <i class="fa fa-play"></i>
+                      </span>
+                    </span>
+                    <span class="tag is-info is-large">Start</span>
+                  </div>
+                </div>
+              </div>
+              -->
+
+            </div>
+
+          </form>
         </div>
-
-      </form>
+      </div>
     </div>
+    <!-- /Tab #1: Timer -->
+
+    <!-- Tab #2: Tasks -->
+    <div class="tab-content" data-tab="tab-2">
+        <div class="section">
+          <div class="content has-text-centered">
+            <h4 class="is-4">Second tab: Tasks</h4>
+            <p>New tab!</p>
+          </div>
+        </div>
+      </div>
+      <!-- /Tab #2: Tasks -->
+
   </div>
+  <!-- /TABS -->
+
 </section>
 </main>
 <!-- /content -->
