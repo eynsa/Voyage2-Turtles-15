@@ -1,5 +1,10 @@
-/** Countdown timer logic */
-function timer() {
+/**
+ * Timer
+ * @param {MouseEvent} event
+ */
+function timer(event) {
+  event.preventDefault();
+
   toggleWebRequestBlocker();
 }
 
@@ -18,24 +23,30 @@ function options() {
   }
 }
 
+/**
+ * Event Handler for tabs on this page
+ * @param {MouseEvent} event
+ */
+function switchTab(event) {
+  let number = this.dataset.tab;
+
+  // hides the current tab and removes its highlight
+  let content = document.querySelectorAll('div.tab-content');
+  content.forEach((el) => el.classList.remove('is-active'));
+  let tabs = document.querySelectorAll('li.tab-button');
+  tabs.forEach((el) => el.classList.remove(('is-active')));
+
+  // displays and highlights the correct tab
+  let active = document.querySelector(`div.tab-content[data-tab="${number}"]`);
+  active.classList.add('is-active');
+  this.classList.add('is-active');
+}
+
 
 /** document init function */
 function init() {
-  const tabs = document.querySelectorAll('li.tab-button');
-  const tabContent = document.querySelectorAll('div.tab-content');
-
-  tabs.forEach(function(element) {
-    element.addEventListener('click', function(event) {
-      let tab = this.dataset.tab;
-      let active = document.querySelector(`div.tab-content[data-tab="${tab}"]`);
-      console.log(active);
-      tabs.forEach((el) => el.classList.remove(('is-active')));
-      this.classList.add('is-active');
-
-      tabContent.forEach((el) => el.classList.remove('is-active'));
-      active.classList.add('is-active');
-    });
-  });
+  let tabs = document.querySelectorAll('li.tab-button');
+  tabs.forEach((tab) => tab.addEventListener('click', switchTab));
 
   document.getElementById('startTimer').addEventListener('click', timer);
   document.getElementById('options').addEventListener('click', options);
