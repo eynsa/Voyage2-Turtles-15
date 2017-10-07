@@ -1,87 +1,93 @@
-/**
- * temp logging function for the option page
- * @param {String} message
- */
-function log(message) {
-  let pre = document.getElementById('logging');
-  let time = (new Date).toTimeString().slice(0, 8);
-  pre.textContent = `${time} - ${message}\n${pre.textContent}\n`;
-}
+/* eslint no-console: 1 */
 
-/**
- * Populates form fields with data from storage
- * @param {Object} data - JSON data object
- */
-function fillForm(data) {
-  log('retrieved from storage: ' + JSON.stringify(data));
-  let whitelist = document.querySelector('textarea[name="whitelist"]');
-  whitelist.textContent = data['whitelist'];
-}
+const Options = {
 
-/**
- * Checks whether the domain is valid
- * todo: implement
- * @param {String} domain
- * @return {boolean} is the input a valid domain
- */
-function isValidDomain(domain) {
-  // eslint-disable-next-line
-  let pattern = new RegExp('^(http(s)?:\/\/)?(www.)?([-a-z0-9\*]{1,63}\.)*?[a-z0-9][-a-z0-9]{0,61}[a-z0-9]\.[a-z]{2,6}(\/[*-\w@\+\.~#\?&/=%]*)?');
-  return pattern.test(domain);
-}
+  data: {
+    whitelist: [],
+  },
 
-/**
- * Gets form entries and stores it
- * @param {Event} event - submit event
- */
-function submit(event) {
-  event.preventDefault();
+  init: function() {
+    this.cache();
+    this.bindEvents();
+    this.getDataFromStorage();
+    this.render(); // pointless for now. refactor getDataFromStorage()
+  },
 
-  let entries = {};
-  let formData = new FormData(document.forms['options']);
-  for (let entry of formData.entries()) {
-    entries[entry[0]] = entry[1];
-  }
+  bindEvents: function() {
+    this.options.addEventListener('submit', this.submit.bind(this));
+    this.urlEntry.addEventListener('keydown', this.urlEntryHandler.bind(this));
+  },
 
-  chrome.storage.local.set(entries, function() {
-    log('saved to storage: ' + JSON.stringify(entries));
-  });
-}
+  /** Caches DOM elements so they only have to be located once */
+  cache: function() {
+    this.options = document.forms['options'];
+    this.urlEntry = document.getElementById('urlEntry');
+    this.whitelist = document.getElementById('whitelist');
+  },
 
-/**
- * Stops the form from submitting when pressing the 'Enter' key.
- * Validates the domain field and if valid, add it to the whitelist textarea.
- * @param {Event} event - KeyboardEvent
- */
-function validateDomainOnEnter(event) {
-  if (event.key === 'Enter') {
+  /**
+   * Retrieves form data from storage, then renders the page
+   *
+   * TODO: use promises to delete this.render() and only use init();
+   */
+  getDataFromStorage: function() {
+    chrome.storage.local.get('whitelist', (data) => {
+      console.info('retrieved from storage: ' + JSON.stringify(data));
+      this.data.whitelist = data.whitelist;
+
+      this.render();
+    });
+  },
+
+  /** (re)Fills the forms on the page. */
+  render: function() {
+    this.whitelist.textContent = this.data.whitelist;
+  },
+
+  /**
+   * Handler for the form's 'submit' event
+   * Saves the whitelist to local storage
+   *
+   * TODO: URL validation before submitting
+   * @param {Event} event
+   */
+  submit: (event) => {
     event.preventDefault();
 
-    let input = document.querySelector('input[name="domain"]');
-    if (isValidDomain(input.value)) {
-      input.classList.add('is-valid');
-      let whitelist = document.querySelector('textarea[name="whitelist"]');
-      whitelist.textContent = `${whitelist.textContent}\n${input.value}`;
-    } else {
-      input.classList.add('is-invalid');
-      // let small = document.querySelector('small.whitelist');
-      // small.add
+    let form = new FormData(document.forms['options']);
+    let data = {'whitelist': form.get('whitelist')};
+
+    chrome.storage.local.set(data, () => {
+      console.info('saved to storage: ' + JSON.stringify(data));
+    });
+  },
+
+  /**
+   * Validates the urlEntry input before adding it to the whitelist
+   *
+   * TODO: refactor URL validation to a separate function
+   * TODO: store URLs in a set instead of grabbing the textContent
+   * @param {KeyboardEvent} event
+   */
+  urlEntryHandler: (event) => {
+    this.urlEntry.classList.remove('is-success', 'is-danger');
+    if (event.key === 'Enter') {
+      event.preventDefault();
+
+      // eslint-disable-next-line
+      let pattern = new RegExp('^(http(s)?:\/\/)?(www.)?([-a-z0-9\*]{1,63}\.)*?[a-z0-9][-a-z0-9]{0,61}[a-z0-9]\.[a-z]{2,6}(\/[*-\w@\+\.~#\?&/=%]*)?');
+      if (pattern.test(this.urlEntry.value)) { // URL is valid
+        this.urlEntry.classList.add('is-success');
+        this.whitelist.textContent = this.whitelist.textContent + '\n' +
+          this.urlEntry.value;
+        this.urlEntry.value = '';
+      } else {
+        this.urlEntry.classList.add('is-danger');
+      }
     }
-  }
-}
+  },
+};
 
-
-/** document init function */
-function init() {
-  // retrieves form values from storage and puts them in the page
-  chrome.storage.local.get(null, fillForm);
-
-  // overrides default behavior when the focus is on domain input field
-  let domainField = document.querySelector('input[name="domain');
-  domainField.addEventListener('keydown', validateDomainOnEnter);
-
-  // what to do when the form is submitted
-  document.forms['options'].addEventListener('submit', submit);
-}
-
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', () => {
+  Options.init();
+});

@@ -2,105 +2,138 @@
 <html lang="en">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/css/global.css">
+<link rel="stylesheet" href="assets/css/bulma/bulmaswatch.min.css">
+<link rel="stylesheet" href="assets/css/font-awesome.min.css">
 <script src="assets/js/options.js"></script>
 <title>Options</title>
+<body class="sticky-footer">
 
-
-<nav class="nav navbar navbar-expand navbar-dark bg-dark mb-3">
-  <div class="col-2">
-    <a class="navbar-brand" href="#">Pomodoras</a>
+<!-- navbar -->
+<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="http://bulma.io">
+      <img src="assets/images/icon@2x.png" alt="Pomidoras">
+    </a>
   </div>
+  <div class="navbar-menu is-active">
 
-  <div class="collapse navbar-collapse">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Options</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Stats</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
-      </li>
-    </ul>
+    <div class="navbar-start">
+
+      <!-- Dropdown: Options -->
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">Options</a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item">Timer</a>
+          <a class="navbar-item">Tasks</a>
+          <a class="navbar-item is-active">Whitelist</a>
+        </div>
+      </div>
+      <!-- /Dropdown: Options -->
+
+      <!-- Dropdown: Stats -->
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">Stats</a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item">Graph</a>
+          <a class="navbar-item">History</a>
+        </div>
+      </div>
+      <!-- /Dropdown: Stats -->
+
+      <!-- Dropdown: Help -->
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">Help</a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item">Tutorial</a>
+          <hr class="navbar-divider">
+          <a class="navbar-item">About</a>
+        </div>
+      </div>
+      <!-- /Dropdown: Help -->
+    </div>
+
+    <div class="navbar-end">
+      <a class="navbar-item" href="https://github.com/chingu-coders/Voyage2-Turtles-15" target="_blank">
+        <span class="icon" style="color: #333;">
+          <i class="fa fa-lg fa-github"></i>
+        </span>
+      </a>
+    </div>
+
   </div>
 </nav>
+<!-- /navbar -->
 
-<div class="container-fluid">
-  <div class="row">
+<!-- content -->
+<main class="sticky-footer">
+  <section class="section">
+    <div class="container">
 
-    <nav class="col-2 sidebar">
-      <ul class="nav nav-pills flex-column">
-        <li class="nav-item">
-          <a class="nav-link active" href="#whitelist">Whitelist</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Timer</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Sound</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Export</a>
-        </li>
-      </ul>
-    </nav>
-
-    <main class="col-10" role="main">
-
-      <h2><a id="whitelist">Whitelist</a></h2>
-      <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>
-        Mauris pulvinar feugiat ipsum pretium feugiat. Aliquam et mi blandit, congue sem varius, condimentum leo.<br>
-        In volutpat velit ut lacus semper elementum sed id risus.</p>
+      <h1 class="title">Whitelist</h1>
+      <h3 class="subtitle">The sites you still need access to even if the timer is ticking.</h3>
 
       <form name="options">
-        <div class="row">
-          <div class="col">
-
-            <div class="form-group">
-              <label for="whitelist">URL to whitelist:</label>
-              <input type="text" class="form-control" id="whitelist" placeholder="http://" name="domain">
-              <small id="whitelist" class="form-text text-muted">Use an asterisk (*) as a wildcard</small>
-            </div>
-
+        <label class="label" for="urlEntry">URL to whitelist:</label>
+        <div class="field-body">
+          <div class="control has-icons-left"> <!-- is-expanded doesn't work? -->
+            <span class="icon is-left">
+              <i class="fa fa-link"></i>
+            </span>
+            <input class="input" type="text" id="urlEntry" name="domain" placeholder="Enter URL" autocomplete="off">
+            <p class="help">Use an asterisk (*) as a wildcard
           </div>
-          <div class="col">
-            Wildcards
+          <div class="control">
+            <button class="button is-primary">
+              Add to Whitelist
+            </button>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="field-label">&nbsp;</div>
+          <label class="label" for="whitelist">List of Whitelisted URLs</label>
+          <div class="field-body">
+            <textarea class="textarea" id="whitelist" rows="10" name="whitelist"></textarea>
           </div>
         </div>
 
-        <div class="row">
-          <div class="col">
-
-            <div class="form-group">
-              <textarea class="form-control" id="whitelistedDomains" rows="3" name="whitelist"></textarea>
-            </div>
-
-          </div>
-          <div class="col">
-            Validate here?
-          </div>
+        <div class="field is-grouped">
+          <p class="control">
+          <button class="button is-success" type="submit" name="submit">
+            <span class="icon is-small">
+              <i class="fa fa-check"></i>
+            </span>
+            <span>Save Changes</span>
+          </button>
+          <p class="control">
+          <button class="button is-outlined is-danger" type="submit" name="submit">
+            <span class="icon is-small">
+              <i class="fa fa-close"></i>
+            </span>
+            <span>Cancel</span>
+          </button>
         </div>
-        <div class="my-3">
-          <button class="btn btn-primary" type="submit" name="submit">Save</btn>
-        </div>
-
       </form>
 
-      <hr>
-      <pre id="logging"></pre>
+    </div>
+  </section>
+</main>
+<!-- /content -->
 
-    </main>
-
+<!-- footer -->
+<footer class="footer"> <!-- sticky-footer -->
+  <div class="container">
+    <div class="content has-text-centered">
+      <p><strong>Pomidoras</strong> - 0.0.1
+      <p>
+        <a class="icon" href="https://github.com/chingu-coders/Voyage2-Turtles-15">
+          <i class="fa fa-github"></i>
+        </a>
+    </div>
   </div>
-</div>
-
-<!--
-Refused to load the script '{all 3}' because it violates the following Content Security Policy directive: "script-src 'self' blob: filesystem: chrome-extension-resource:".
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
--->
+</footer>
+<!-- /footer -->
