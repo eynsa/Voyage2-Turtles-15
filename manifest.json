@@ -31,7 +31,8 @@
   "permissions": [
     "webRequest",
     "webRequestBlocking",
-    "<all_urls>",
+    "http://*/*",
+    "https://*/*",
     "storage",
     "unlimitedStorage",
     "notifications"
