@@ -12,8 +12,7 @@
 
   "background": {
     "scripts": [
-      "assets/js/background.js",
-      "assets/js/webrequestblocker.js"
+      "assets/js/background.js"
     ]
   },
 
@@ -31,7 +30,8 @@
   "permissions": [
     "webRequest",
     "webRequestBlocking",
-    "<all_urls>",
+    "http://*/*",
+    "https://*/*",
     "storage",
     "unlimitedStorage",
     "notifications"

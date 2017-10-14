@@ -5,12 +5,12 @@
 function timer(event) {
   event.preventDefault();
 
-  toggleWebRequestBlocker();
+  webRequestToggle();
 }
 
-/** Sends a message to WebRequestBlocker to toggle it on-off */
-function toggleWebRequestBlocker() {
-  let message = {WebRequestBlocker: 'toggle'};
+/** Toggles redirecting webRequests */
+function webRequestToggle() {
+  let message = {'webRequest': 'toggle'};
   chrome.runtime.sendMessage(message, function(response) {});
 }
 
