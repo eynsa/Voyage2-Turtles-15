@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "A pomodoro timer that blocks web access while the timer is running.",
   "scripts": {
-    "start": "webpack --config webpack.config.js",
+    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
