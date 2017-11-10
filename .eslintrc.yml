@@ -7,3 +7,6 @@ env:
   browser: true
   node: true
   webextensions: true
+
+parserOptions:
+  sourceType: module
