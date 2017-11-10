@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chingu-coders/Voyage2-Turtles-15"
+    "url": "git://github.com/chingu-coders/Voyage2-Turtles-15.git"
   },
   "keywords": [
     "extension",
