@@ -1,22 +1,28 @@
 {
-  "name": "Pomidoras",
-  "version": "0.0.1",
-  "description": "Blocks all websites but a whitelisted few once a pomodoro timer has been started",
-  "author": "",
-  "license": "ISC",
+  "name": "Turtle",
+  "version": "0.1.0",
+  "description": "A pomodoro timer that blocks web access while the timer is running.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chingu-coders/Voyage2-Turtles-15"
+  },
+  "keywords": [
+    "extension",
+    "chrome",
+    "firefox",
+    "pomodoro",
+    "webrequest",
+    "blocking",
+    "blocker",
+    "whitelist",
+    "productivity"
+  ],
+  "author": "Steven Eysermans",
   "bugs": {
     "url": "https://github.com/chingu-coders/Voyage2-Turtles-15/issues"
   },
-  "homepage": "https://github.com/chingu-coders/Voyage2-Turtles-15#readme",
-  "devDependencies": {
-    "eslint": "^4.8.0",
-    "eslint-config-google": "^0.9.1",
-    "mocha": "^3.5.3"
-  },
-  "dependencies": {
-    "bulma": "^0.5.3"
-  },
-  "scripts": {
-    "test": "mocha"
-  }
+  "homepage": "https://github.com/chingu-coders/Voyage2-Turtles-15#readme"
 }
