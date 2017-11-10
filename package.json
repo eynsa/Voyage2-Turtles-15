@@ -27,9 +27,14 @@
   },
   "homepage": "https://github.com/chingu-coders/Voyage2-Turtles-15#readme",
   "devDependencies": {
+    "css-loader": "^0.28.7",
     "eslint": "^4.10.0",
     "eslint-config-google": "^0.9.1",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "node-sass": "^4.6.0",
+    "sass-loader": "^6.0.6",
     "semantic-ui-sass": "^2.2.11",
+    "style-loader": "^0.19.0",
     "webpack": "^3.8.1"
   }
 }
