@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "A pomodoro timer that blocks web access while the timer is running.",
   "scripts": {
+    "start": "webpack --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/chingu-coders/Voyage2-Turtles-15/issues"
   },
-  "homepage": "https://github.com/chingu-coders/Voyage2-Turtles-15#readme"
+  "homepage": "https://github.com/chingu-coders/Voyage2-Turtles-15#readme",
+  "devDependencies": {
+    "webpack": "^3.8.1"
+  }
 }
