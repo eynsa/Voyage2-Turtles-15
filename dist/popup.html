@@ -1,11 +1,57 @@
 <!doctype html>
-<html lang="en">
+<html class="popup" lang="en">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="styles.css">
-<body>
+<body class="popup sticky-footer">
 
-<h1>Popup</h1>
+<!-- content -->
+<main class="sticky-footer">
+<section>
+
+  <div class="section">
+    <div class="content has-text-centered">
+      <form name="timer">
+
+        <div>
+          <div class="section">
+            <!-- timer -->
+            <div class="content has-text-centered">
+              <h1 class="title is-1">25:00</h1>
+            </div>
+            <!-- /timer -->
+            <!-- progress bar -->
+            <div>
+              <progress class="progress is-warning is-small" value="30" max="100">30%</progress>
+            </div>
+            <!-- /progress bar -->
+            <div class="section">
+              <!-- timer -->
+              <button class="button is-primary" id="startTimer" aria-label="Start Timer">
+                <span class="icon is-small"><i class="fa fa-play"></i></span>
+                <span>Start</span>
+              </button>
+              <!-- /start button -->
+            </div>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+</section>
+</main>
+<!-- /content -->
+
+<footer class="footer is-paddingless">
+  <div class="container is-fluid">
+    <div class="has-text-right" style="margin: 5px">
+      <a class="icon is-primary" href="#"><i class="fa fa-cog" id="options">&nbsp;</i></a>
+    </div>
+  </div>
+</footer>
+
 
 <script src="vendors.js"></script>
 <script src="popup.js"></script>
