@@ -1,5 +1,3 @@
-const webpack = require('webpack');
-
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
@@ -34,9 +32,5 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin('styles.css'),
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-    }),
   ],
 };
