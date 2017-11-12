@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="styles.css">
+<title>Options</title>
+<body class="sticky-footer">
+
+<!-- navbar -->
+<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="http://bulma.io">
+      <img src="assets/images/icon@2x.png" alt="Pomidoras">
+    </a>
+  </div>
+  <div class="navbar-menu is-active">
+
+    <div class="navbar-start">
+
+      <!-- Dropdown: Options -->
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">Options</a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item">Timer</a>
+          <a class="navbar-item">Tasks</a>
+          <a class="navbar-item is-active">Whitelist</a>
+        </div>
+      </div>
+      <!-- /Dropdown: Options -->
+
+      <!-- Dropdown: Stats -->
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">Stats</a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item">Graph</a>
+          <a class="navbar-item">History</a>
+        </div>
+      </div>
+      <!-- /Dropdown: Stats -->
+
+      <!-- Dropdown: Help -->
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">Help</a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item">Tutorial</a>
+          <hr class="navbar-divider">
+          <a class="navbar-item">About</a>
+        </div>
+      </div>
+      <!-- /Dropdown: Help -->
+    </div>
+
+    <div class="navbar-end">
+      <a class="navbar-item" href="https://github.com/chingu-coders/Voyage2-Turtles-15" target="_blank">
+        <span class="icon" style="color: #333;">
+          <i class="fa fa-lg fa-github"></i>
+        </span>
+      </a>
+    </div>
+
+  </div>
+</nav>
+<!-- /navbar -->
+
+<!-- content -->
+<main class="sticky-footer">
+  <section class="section">
+    <div class="container">
+
+      <h1 class="title">Whitelist</h1>
+      <h3 class="subtitle">The sites you still need access to even if the timer is ticking.</h3>
+
+      <form name="options">
+        <label class="label" for="urlEntry">URL to whitelist:</label>
+        <div class="field-body">
+          <div class="control has-icons-left"> <!-- is-expanded doesn't work? -->
+            <span class="icon is-left">
+              <i class="fa fa-link"></i>
+            </span>
+            <input class="input" type="text" id="urlEntry" name="domain" placeholder="Enter URL" autocomplete="off">
+            <p class="help">Use an asterisk (*) as a wildcard
+          </div>
+          <div class="control">
+            <button class="button is-primary">
+              Add to Whitelist
+            </button>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="field-label">&nbsp;</div>
+          <label class="label" for="whitelist">List of Whitelisted URLs</label>
+          <div class="field-body">
+            <textarea class="textarea" id="whitelist" rows="10" name="whitelist"></textarea>
+          </div>
+        </div>
+
+        <div class="field is-grouped">
+          <p class="control">
+          <button class="button is-success" type="submit" name="submit">
+            <span class="icon is-small">
+              <i class="fa fa-check"></i>
+            </span>
+            <span>Save Changes</span>
+          </button>
+          <p class="control">
+          <button class="button is-outlined is-danger" type="submit" name="submit">
+            <span class="icon is-small">
+              <i class="fa fa-close"></i>
+            </span>
+            <span>Cancel</span>
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </section>
+</main>
+<!-- /content -->
+
+<!-- footer -->
+<footer class="footer"> <!-- sticky-footer -->
+  <div class="container">
+    <div class="content has-text-centered">
+      <p><strong>Pomidoras</strong> - 0.0.1
+      <p>
+        <a class="icon" href="https://github.com/chingu-coders/Voyage2-Turtles-15">
+          <i class="fa fa-github"></i>
+        </a>
+    </div>
+  </div>
+</footer>
+<!-- /footer -->
+
+
+<script src="vendors.js"></script>
+<script src="options.js"></script>

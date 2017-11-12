@@ -1,0 +1,38 @@
+{
+  "manifest_version": 2,
+
+  "name": "turtle",
+  "description": "A pomodoro timer that blocks web access while the timer is running.",
+  "version": "0.1.0",
+
+  "icons": {
+    "32": "dist/images/icon.png",
+    "64": "dist/images/icon@2x.png"
+  },
+
+  "background": {
+    "scripts": [
+      "dist/background.js"
+    ]
+  },
+
+  "browser_action": {
+    "default_icon": "dist/images/icon.png",
+    "default_popup": "dist/popup.html",
+    "default_title": "Turtles Team 15"
+  },
+
+  "options_ui": {
+    "page": "dist/options.html",
+    "open_in_tab": true
+  },
+
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "http://*/*",
+    "https://*/*",
+    "storage",
+    "notifications"
+  ]
+}

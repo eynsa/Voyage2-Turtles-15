@@ -60,14 +60,24 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 5:
+/***/ 4:
 /***/ (function(module, exports) {
 
+/** document init function */
+function init() {
+  let params = new URLSearchParams(window.location.search);
+  if (params.has('url')) {
+    let subtitle = document.querySelector('h3.subtitle');
+    subtitle.textContent = params.get('url');
+  }
+}
+
+document.addEventListener('DOMContentLoaded', init);
 
 
 /***/ })
